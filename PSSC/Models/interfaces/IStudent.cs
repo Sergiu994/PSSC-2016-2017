@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    interface IStudent : ISectie
+    interface IStudent 
     {
         string Nume_student
         {
