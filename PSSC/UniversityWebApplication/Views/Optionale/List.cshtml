@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Totalul optionalelor";
+}
+
+<h2>List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nume optional
+        </th>
+        <th>
+            Nume profesor
+        </th>
+        <th>
+            Credite
+        </th>
+        <th>Proportia</th>
+        <th>Tipul evaluarii</th>
+    </tr>
+
+    @foreach (var item in ViewBag.userdetails)
+    {
+        <tr>
+            <td>
+                @item.Nume_materie
+            </td>
+            <td>
+                @item.Nume
+            </td>
+            <td>
+                @item.Numar_credite
+            </td>
+            <td>@item.Proportia</td>
+            <td>
+                @item.Tipul_evaluarii
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

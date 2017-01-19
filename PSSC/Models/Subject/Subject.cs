@@ -12,7 +12,7 @@ namespace Models.Subject
     public class Subject
     {
         public SubjectInformation SubjectInfo { get; internal set; }
-
+        public static decimal proportion;
         private Dictionary<Student.Student, SubjectSituation> _signedUpStudentsGrades;
         public Dictionary<Student.Student, SubjectSituation> SignedUpStudentsGrades { get { return _signedUpStudentsGrades; } }
 
@@ -43,7 +43,15 @@ namespace Models.Subject
 
             decimal activityGrade = situation.ActivityGrade.Value;
             decimal examAverage = situation.GetExamAverage(SubjectInfo.Evaluation);
-            decimal proportion = SubjectInfo.ActivityProportion.Fraction;
+
+            if (SubjectInfo.ActivityProportion == Proportion.OneHalf)
+            {
+                proportion = 0.5M;
+            }
+            else if(SubjectInfo.ActivityProportion==Proportion.OneThird)
+            {
+                proportion = 0.3M;
+            }
 
             return new Grade(activityGrade * proportion + (1 - proportion) * examAverage);
         }

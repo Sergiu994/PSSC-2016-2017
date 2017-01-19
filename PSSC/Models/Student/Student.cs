@@ -1,9 +1,4 @@
 ﻿using Models.Generics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Student
 {
@@ -13,17 +8,19 @@ namespace Models.Student
         public RegistrationNumber RegNumber { get; internal set; }
         public PlainText Name { get; internal set; }
         public Credits Credits { get; internal set; }
-        public Guid studentID { get; internal set; }
+       // public Guid studentID { get; internal set; }
 
-        public Student(Guid ID,RegistrationNumber regNumber, PlainText name)
+
+        public Student()
+        { }
+        public Student(RegistrationNumber regNumber, PlainText name)
         {
             RegNumber = regNumber;
             Name = name;
-            studentID=ID;
         }
 
-        public Student(Guid ID,RegistrationNumber regNumber, PlainText name, Credits credits)
-            : this(ID,regNumber, name)
+        public Student( PlainText name, Credits credits,RegistrationNumber regNumber)
+            : this(regNumber, name)
         {
             Credits = credits;
         }

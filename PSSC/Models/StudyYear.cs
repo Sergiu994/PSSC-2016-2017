@@ -20,7 +20,7 @@ namespace Models.Deanship
         public ReadOnlyCollection<Subject.Subject> Subjects { get { return _definedSubjects.AsReadOnly(); } }
 
         public StudyYear()
-        {
+        { 
 
         }
 

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PSSCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="ID Materie" />
+          </Key>
+          <Property Name="ID Materie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume materie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Numar credite" Type="int" />
+          <Property Name="Tipul evaluarii" Type="nvarchar" MaxLength="50" />
+          <Property Name="Proportia" Type="float" />
+          <Property Name="IDProfesor" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Proffessor">
+          <Key>
+            <PropertyRef Name="IDProfesor" />
+          </Key>
+          <Property Name="IDProfesor" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nume" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PSSC.dbo.Situatia' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Situatia">
+          <Property Name="Nota parcurs" Type="float" />
+          <Property Name="Nota examen" Type="float" />
+          <Property Name="Prezenta" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Credits_Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Studentt">
+          <Key>
+            <PropertyRef Name="Credite" />
+          </Key>
+          <Property Name="Nume" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Credite" Type="int" Nullable="false" />
+          <Property Name="Numar matricol" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Function Name="proc_materii" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="select_Stud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PSSCModelStoreContainer">
+          <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proffessor" EntityType="Self.Proffessor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studentt" EntityType="Self.Studentt" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PSSCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="ID_Materie" />
+          </Key>
+          <Property Name="ID_Materie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume_materie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Numar_credite" Type="Int32" />
+          <Property Name="Tipul_evaluarii" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Proportia" Type="Double" />
+          <Property Name="IDProfesor" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Proffessor">
+          <Key>
+            <PropertyRef Name="IDProfesor" />
+          </Key>
+          <Property Name="IDProfesor" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nume" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="Guid" Nullable="false" />
+          <Property Name="Credits_Count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Studentt">
+          <Key>
+            <PropertyRef Name="Credite" />
+          </Key>
+          <Property Name="Nume" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Credite" Type="Int32" Nullable="false" />
+          <Property Name="Numar_matricol" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PSSCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Materias" EntityType="Self.Materia" />
+          <EntitySet Name="Proffessors" EntityType="Self.Proffessor" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Studentts" EntityType="Self.Studentt" />
+          <FunctionImport Name="proc_materii" ReturnType="Collection(PSSCModel.proc_materii_Result)" />
+          <FunctionImport Name="select_Stud" ReturnType="Collection(PSSCModel.select_Stud_Result)" />
+        </EntityContainer>
+        <ComplexType Name="proc_materii_Result">
+          <Property Type="String" Name="Nume_materie" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="Numar_credite" Nullable="true" />
+          <Property Type="Double" Name="Proportia" Nullable="true" />
+          <Property Type="String" Name="Tipul_evaluarii" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="select_Stud_Result">
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="Credite" Nullable="false" />
+          <Property Type="String" Name="Numar_matricol" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PSSCModelStoreContainer" CdmEntityContainer="PSSCEntities">
+          <EntitySetMapping Name="Materias">
+            <EntityTypeMapping TypeName="PSSCModel.Materia">
+              <MappingFragment StoreEntitySet="Materia">
+                <ScalarProperty Name="ID_Materie" ColumnName="ID Materie" />
+                <ScalarProperty Name="Nume_materie" ColumnName="Nume materie" />
+                <ScalarProperty Name="Numar_credite" ColumnName="Numar credite" />
+                <ScalarProperty Name="Tipul_evaluarii" ColumnName="Tipul evaluarii" />
+                <ScalarProperty Name="Proportia" ColumnName="Proportia" />
+                <ScalarProperty Name="IDProfesor" ColumnName="IDProfesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proffessors">
+            <EntityTypeMapping TypeName="PSSCModel.Proffessor">
+              <MappingFragment StoreEntitySet="Proffessor">
+                <ScalarProperty Name="IDProfesor" ColumnName="IDProfesor" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="PSSCModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="Credits_Count" ColumnName="Credits_Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studentts">
+            <EntityTypeMapping TypeName="PSSCModel.Studentt">
+              <MappingFragment StoreEntitySet="Studentt">
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Credite" ColumnName="Credite" />
+                <ScalarProperty Name="Numar_matricol" ColumnName="Numar matricol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_materii" FunctionName="PSSCModel.Store.proc_materii">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PSSCModel.proc_materii_Result">
+                <ScalarProperty Name="Nume_materie" ColumnName="Nume materie" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Numar_credite" ColumnName="Numar credite" />
+                <ScalarProperty Name="Proportia" ColumnName="Proportia" />
+                <ScalarProperty Name="Tipul_evaluarii" ColumnName="Tipul evaluarii" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="select_Stud" FunctionName="PSSCModel.Store.select_Stud">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PSSCModel.select_Stud_Result">
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Credite" ColumnName="Credite" />
+                <ScalarProperty Name="Numar_matricol" ColumnName="Numar matricol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

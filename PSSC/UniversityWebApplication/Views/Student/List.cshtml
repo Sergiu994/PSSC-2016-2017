@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Studentii";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Adauga un nou student", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Nume
+        </th>
+        <th>
+           Credite
+        </th>
+        <th>
+          Numar matricol
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.userdetails) {
+    <tr>
+        <td>
+           @item.Nume
+        </td>
+        <td>
+            @item.Credite
+        </td>
+        <td>
+            @item.Numar_matricol
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

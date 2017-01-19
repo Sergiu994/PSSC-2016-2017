@@ -1,14 +1,15 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Models.source;
-using Models.Student;
-namespace Models.Repository
+using Models.Deanship;
+
+namespace UniversityWebApplication.Repository
 {
-    class GradeReportRepository : IRepository<GradeReport>
+    class StudyYearRepository : IRepository<StudyYear>
     {
-        public IEnumerable<GradeReport> List
+        public IEnumerable<StudyYear> List
         {
             get
             {
@@ -16,24 +17,25 @@ namespace Models.Repository
             }
         }
 
-        public void Add(GradeReport entity)
+        public void Add(StudyYear entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(GradeReport entity)
+        public void Delete(StudyYear entity)
         {
             throw new NotImplementedException();
         }
 
-        public GradeReport FindbyId(Guid Id)
+        public StudyYear FindbyId(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(GradeReport entity)
+        public void Update(StudyYear entity)
         {
             throw new NotImplementedException();
         }
     }
 }
+*/

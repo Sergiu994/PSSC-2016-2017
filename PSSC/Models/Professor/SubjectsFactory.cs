@@ -23,5 +23,10 @@ namespace Models.Professor
             return subject;
         }
 
+        public Professor CreateProfessor(Guid id, string name)
+        {
+            var prof = new Professor(id, new PlainText(name));
+            return prof;
+        }
     }
 }

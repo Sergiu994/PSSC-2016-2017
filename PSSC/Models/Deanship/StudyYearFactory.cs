@@ -13,8 +13,9 @@ namespace Models.Deanship
         {
         }
 
-        public StudyYear createStudyYear(StudyYear studyYear)
+        public StudyYear createStudyYear(List<Subject.Subject> subjects)
         {
+            var studyYear = new StudyYear(subjects);     
             return studyYear;
         }
     }
